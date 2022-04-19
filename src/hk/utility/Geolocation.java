@@ -43,6 +43,17 @@ public class Geolocation {
         System.out.println("Done!");
     }
 
+    public String getCountry() {
+        try {
+            CityResponse response = databaseReader.city(InetAddress.getByName(ip));
+            return response.getCountry().getName();
+        } catch (IOException | GeoIp2Exception e) {
+            System.err.println("ERROR! Something went wrong getting response from Geoip2");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public String getCity() {
         try {
             CityResponse response = databaseReader.city(InetAddress.getByName(ip));
