@@ -3,14 +3,12 @@ package hk.activity.category.container;
 import hk.activity.Activity;
 import hk.activity.category.Category;
 import hk.location.UserLocation;
-import hk.settings.Settings;
 
 public class BestWeather extends Category {
 
     @Override
-    public void compare() {
+    public void compare(UserLocation userLocation) {
 
-        UserLocation userLocation = new UserLocation(Settings.DEFAULT_LATITUDE, Settings.DEFAULT_LONGITUDE);
         userLocation.fetch();
         userLocation.parse();
 
