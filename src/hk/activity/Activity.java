@@ -4,7 +4,6 @@ import hk.activity.coordinate.Coordinate;
 import hk.activity.weather.WeatherType;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Activity {
 
@@ -26,7 +25,6 @@ public class Activity {
         this.weatherTypes = weatherTypes;
     }
 
-
     public String getName() {
         return name;
     }
@@ -39,8 +37,14 @@ public class Activity {
         return coordinate;
     }
 
-    public WeatherType[] getWeatherTypes() {
-        return weatherTypes;
+    public WeatherType getBestWeather() {
+        return weatherTypes[0];
+    }
+
+    public WeatherType getWorstWeather() {
+        if (weatherTypes.length > 0)
+            return weatherTypes[weatherTypes.length - 1];
+        return null;
     }
 
     public void addPoints(int amount) {
@@ -49,7 +53,7 @@ public class Activity {
 
     @Override
     public String toString() {
-        return "[Name: " + getName() + " - City: " + getCity() + " - Coordinates: " + getCoordinate() + " - WeatherType " + Arrays.toString(getWeatherTypes()) + "]";
+        return "[Name: " + getName() + " - City: " + getCity() + " - Coordinates: " + getCoordinate() + " - Best weather: " + getBestWeather() + " " + (getWorstWeather() == null ? "" : "- Worst weather: " + getWorstWeather()) + "]";
     }
 
 }
