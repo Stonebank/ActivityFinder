@@ -33,9 +33,13 @@ public class UserLocation {
 
     public void fetch() {
         try {
-            URL url = new URL("https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + Settings.WEATHER_API_KEY + "&units=" + Settings.WEATHER_UNIT_OUTPUT);
+            URL url = new URL("https://api.openweathermap.org/data/2.5/weather?lat=" + longitude + "&lon=" + latitude + "&appid=" + Settings.WEATHER_API_KEY + "&units=" + Settings.WEATHER_UNIT_OUTPUT);
             JSONTokener jsonTokener = new JSONTokener(url.openStream());
             jsonObject = new JSONObject(jsonTokener);
+
+            if (Settings.DEBUG)
+                System.out.println("https://api.openweathermap.org/data/2.5/weather?lat=" + longitude + "&lon=" + latitude + "&appid=" + Settings.WEATHER_API_KEY + "&units=" + Settings.WEATHER_UNIT_OUTPUT);
+
         } catch (IOException e) {
             System.err.println("ERROR! Could not fetch data from OpenWeatherAPI");
             e.printStackTrace();
@@ -56,9 +60,9 @@ public class UserLocation {
         String weather = (String) jsonObject.getJSONArray("weather").getJSONObject(0).get("description");
         switch (weather) {
             case "clear sky", "sunny", "sun" -> weatherType = WeatherType.SUNNY;
-            case "few clouds", "scattered clouds", "broken clouds" -> weatherType = WeatherType.CLOUD;
-            case "shower rain", "rain", "mist" -> weatherType = WeatherType.RAIN;
-            case "thunderstorm" -> weatherType = WeatherType.STORM;
+            case "overcast clouds", "few clouds", "scattered clouds", "broken clouds" -> weatherType = WeatherType.CLOUD;
+            case "shower rain", "rain", "mist", "drizzle" -> weatherType = WeatherType.RAIN;
+            case "thunderstorm", "tornado" -> weatherType = WeatherType.STORM;
             case "snow" -> weatherType = WeatherType.SNOW;
             default -> System.err.println("ERROR! WeatherType not detected");
         }
