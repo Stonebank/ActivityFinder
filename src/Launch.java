@@ -29,6 +29,9 @@ public class Launch {
         userLocation.parse();
 
         System.out.println("Current weather: " + userLocation.getWeatherType());
+        System.out.println("Current temperature: " + userLocation.getCurrent_temperature() + " °C");
+        System.out.println("Maximum and minimum temperature: " + userLocation.getMaximum_temperature() + " °C / " + userLocation.getMinimum_temperature() + " °C");
+        System.out.println("Currently feels like: " + userLocation.getFeels_like() + " °C");
 
         ActivityLoader activityLoader = new ActivityLoader(Settings.ACTIVITY_JSON_PATH);
         activityLoader.init();
