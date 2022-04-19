@@ -2,12 +2,12 @@ package hk.activity.coordinate;
 
 public class Coordinate {
 
-    private final double latitude;
     private final double longitude;
+    private final double latitude;
 
-    public Coordinate(double latitude, double longitude) {
-        this.latitude = latitude;
+    public Coordinate(double longitude, double latitude) {
         this.longitude = longitude;
+        this.latitude = latitude;
     }
 
     public double getLatitude() {
@@ -20,7 +20,7 @@ public class Coordinate {
 
     @Override
     public String toString() {
-        return "[" + getLatitude() + " " + getLongitude() + "]";
+        return "[" + getLongitude() + " " + getLatitude() + "]";
     }
 
 }
