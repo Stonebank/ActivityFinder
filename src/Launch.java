@@ -8,6 +8,7 @@ import hk.settings.Settings;
 import hk.utility.Geolocation;
 import hk.utility.loader.ActivityLoader;
 
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 public class Launch {
@@ -19,7 +20,7 @@ public class Launch {
         Geolocation geolocation = new Geolocation();
         geolocation.loadDB();
 
-        System.out.println("You're expected to be in " + geolocation.getCity()+ ", " + geolocation.getCountry());
+        System.out.println("You're expected to be in " + geolocation.getCity()+ ", " + geolocation.getCountry() + ", " + Arrays.toString(geolocation.getCoordinate()));
 
         double lat = Settings.DEBUG ? Settings.DEFAULT_LATITUDE : geolocation.getCoordinate()[0];
         double lon = Settings.DEBUG ? Settings.DEFAULT_LONGITUDE : geolocation.getCoordinate()[1];
