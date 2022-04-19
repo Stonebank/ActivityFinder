@@ -27,11 +27,15 @@ public class ActivityLoader {
             public void load(JsonObject reader, Gson gson) {
 
                 String name = reader.get("name").getAsString();
+                String city = reader.get("city").getAsString();
 
                 double latitude = reader.get("coordinate").getAsJsonObject().get("latitude").getAsDouble();
                 double longitude = reader.get("coordinate").getAsJsonObject().get("longitude").getAsDouble();
 
-                Activity.activities.add(new Activity(name, null, new Coordinate(latitude, longitude), WeatherType.PLACEHOLDER));
+                WeatherType bestWeather = WeatherType.valueOf(reader.get("weatherTypes").getAsJsonArray().get(0).getAsString());
+                WeatherType worstWeather = WeatherType.valueOf(reader.get("weatherTypes").getAsJsonArray().get(1).getAsString());
+
+                Activity.activities.add(new Activity(name, city, new Coordinate(latitude, longitude), bestWeather, worstWeather));
 
             }
         };
