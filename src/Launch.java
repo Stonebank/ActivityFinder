@@ -1,16 +1,30 @@
+import com.google.common.base.Stopwatch;
 import hk.activity.Activity;
 import hk.activity.category.Category;
 import hk.activity.category.container.BestDistance;
 import hk.activity.category.container.BestWeather;
 import hk.location.UserLocation;
 import hk.settings.Settings;
+import hk.utility.Geolocation;
 import hk.utility.loader.ActivityLoader;
+
+import java.util.concurrent.TimeUnit;
 
 public class Launch {
 
     public static void main(String[] args) {
 
-        UserLocation userLocation = new UserLocation(Settings.DEFAULT_LATITUDE, Settings.DEFAULT_LONGITUDE);
+        Stopwatch stopwatch = Stopwatch.createStarted();
+
+        Geolocation geolocation = new Geolocation();
+        geolocation.loadDB();
+
+        System.out.println("You're expected to be in " + geolocation.getCity());
+
+        double lat = Settings.DEBUG ? Settings.DEFAULT_LATITUDE : geolocation.getCoordinate()[0];
+        double lon = Settings.DEBUG ? Settings.DEFAULT_LONGITUDE : geolocation.getCoordinate()[1];
+
+        UserLocation userLocation = new UserLocation(lon, lat);
         userLocation.fetch();
         userLocation.parse();
 
@@ -28,7 +42,9 @@ public class Launch {
         bestWeather.compare(userLocation);
 
         for (Activity activity : Activity.activities)
-            System.out.println(activity + ", distance: " + userLocation.calculateDistance(activity.getCoordinate().getLatitude(), activity.getCoordinate().getLongitude()) + " km");
+            System.out.println(activity + ", distance: " + userLocation.calculateDistance(activity.getCoordinate().getLongitude(), activity.getCoordinate().getLatitude()) + " km");
+
+        System.out.println("Application finished in " + stopwatch.stop().elapsed(TimeUnit.MILLISECONDS) + " ms");
 
     }
 
