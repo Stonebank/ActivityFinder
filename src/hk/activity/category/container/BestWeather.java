@@ -18,6 +18,7 @@ public class BestWeather extends Category {
             else
                 activity.removePoints(200);
         }
+
     }
 
     @Override
