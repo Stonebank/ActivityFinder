@@ -20,13 +20,12 @@ public class Launch {
         activityLoader.init();
 
         Category bestDistance = new BestDistance();
-        bestDistance.compare();
+        bestDistance.compare(userLocation);
         bestDistance.addPoints();
-        System.out.println("Best candidate: " + bestDistance.bestCandidate());
         System.out.println();
 
         Category bestWeather = new BestWeather();
-        bestWeather.compare();
+        bestWeather.compare(userLocation);
 
         for (Activity activity : Activity.activities)
             System.out.println(activity + ", distance: " + userLocation.calculateDistance(activity.getCoordinate().getLatitude(), activity.getCoordinate().getLongitude()) + " km");
