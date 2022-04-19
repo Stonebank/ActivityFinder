@@ -1,22 +1,28 @@
 [
   {
     "name": "Goboat",
+    "city": "København",
     "coordinate": {
       "latitude": 55.66924392080051,
       "longitude": 12.578563056059016
     },
     "weatherTypes": [
-      "PLACEHOLDER"
-    ]
+      "SUNNY",
+      "RAIN"
+    ],
+    "points": 0
   },
   {
     "name": "Svanecykler",
+    "city": "København",
     "coordinate": {
       "latitude": 55.68682485679956,
       "longitude": 12.561920127248799
     },
     "weatherTypes": [
-      "PLACEHOLDER"
-    ]
+      "SUNNY",
+      "RAIN"
+    ],
+    "points": 0
   }
 ]
