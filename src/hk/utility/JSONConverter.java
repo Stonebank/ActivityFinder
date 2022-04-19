@@ -49,13 +49,18 @@ public class JSONConverter {
         Scanner scanner = new Scanner(textFile);
         while (scanner.hasNext()) {
 
-            String[] splitter = scanner.nextLine().split("-");
+            String[] splitter = scanner.nextLine().replaceAll(" ", "").split("-");
 
-            String name = splitter[0].replaceAll(" ", "");
-            double latitude = Double.parseDouble(splitter[1]);
-            double longitude = Double.parseDouble(splitter[2]);
+            String name = splitter[0];
+            String city = splitter[1];
 
-            activities.add(new Activity(name, null, new Coordinate(latitude, longitude), WeatherType.PLACEHOLDER));
+            double latitude = Double.parseDouble(splitter[2]);
+            double longitude = Double.parseDouble(splitter[3]);
+
+            WeatherType bestWeather = WeatherType.valueOf(splitter[4]);
+            WeatherType worstWeather = WeatherType.valueOf(splitter[5]);
+
+            activities.add(new Activity(name, city, new Coordinate(latitude, longitude), bestWeather, worstWeather));
             bufferedWriter.append(String.valueOf(activities.get(index)));
 
             index++;
