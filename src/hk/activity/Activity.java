@@ -51,9 +51,17 @@ public class Activity {
         this.points += amount;
     }
 
+    public static Activity getActivity(String name) {
+        for (Activity activity : activities) {
+            if (activity.getName().equalsIgnoreCase(name))
+                return activity;
+        }
+        return null;
+    }
+
     @Override
     public String toString() {
-        return "[Name: " + getName() + " - City: " + getCity() + " - Coordinates: " + getCoordinate() + " - Best weather: " + getBestWeather() + " " + (getWorstWeather() == null ? "" : "- Worst weather: " + getWorstWeather()) + "]";
+        return "[Name: " + getName() + " - City: " + getCity() + " - Coordinates: " + getCoordinate() + " - Best weather: " + getBestWeather() + " " + (getWorstWeather() == null ? "" : "- Worst weather: " + getWorstWeather()) + " - Points: " + points + "]";
     }
 
 }
