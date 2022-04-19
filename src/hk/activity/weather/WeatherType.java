@@ -7,6 +7,7 @@ public enum WeatherType {
     CLOUD,
     WIND,
     STORM,
+    SNOW,
 
     PLACEHOLDER,
 
