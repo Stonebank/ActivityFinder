@@ -3,9 +3,12 @@ package hk.activity;
 import hk.activity.coordinate.Coordinate;
 import hk.activity.weather.WeatherType;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Activity {
+
+    public static final ArrayList<Activity> activities = new ArrayList<>();
 
     private final String name;
     private final String city;
@@ -14,12 +17,15 @@ public class Activity {
 
     private final WeatherType[] weatherTypes;
 
+    private int points;
+
     public Activity(String name, String city, Coordinate coordinate, WeatherType... weatherTypes) {
         this.name = name;
         this.city = city;
         this.coordinate = coordinate;
         this.weatherTypes = weatherTypes;
     }
+
 
     public String getName() {
         return name;
@@ -35,6 +41,10 @@ public class Activity {
 
     public WeatherType[] getWeatherTypes() {
         return weatherTypes;
+    }
+
+    public void addPoints(int amount) {
+        this.points += amount;
     }
 
     @Override
