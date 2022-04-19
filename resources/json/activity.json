@@ -24,5 +24,18 @@
       "RAIN"
     ],
     "points": 0
+  },
+  {
+    "name": "København zoo",
+    "city": "Frederiksberg",
+    "coordinate": {
+      "latitude": 55.67311570731192,
+      "longitude": 12.519043013566618
+    },
+    "weatherTypes": [
+      "SUNNY",
+      "CLOUD"
+    ],
+    "points": 0
   }
 ]
