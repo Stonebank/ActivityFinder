@@ -19,7 +19,7 @@ public class Launch {
         Geolocation geolocation = new Geolocation();
         geolocation.loadDB();
 
-        System.out.println("You're expected to be in " + geolocation.getCity());
+        System.out.println("You're expected to be in " + geolocation.getCity()+ ", " + geolocation.getCountry());
 
         double lat = Settings.DEBUG ? Settings.DEFAULT_LATITUDE : geolocation.getCoordinate()[0];
         double lon = Settings.DEBUG ? Settings.DEFAULT_LONGITUDE : geolocation.getCoordinate()[1];
