@@ -42,8 +42,6 @@ public class JSONConverter {
 
         ArrayList<Activity> activities = new ArrayList<>();
 
-        int index = 0;
-
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(destination));
 
         Scanner scanner = new Scanner(textFile);
@@ -61,9 +59,6 @@ public class JSONConverter {
             WeatherType worstWeather = WeatherType.valueOf(splitter[5]);
 
             activities.add(new Activity(name, city, new Coordinate(latitude, longitude), bestWeather, worstWeather));
-            bufferedWriter.append(String.valueOf(activities.get(index)));
-
-            index++;
 
         }
 
