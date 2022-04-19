@@ -6,6 +6,7 @@ import com.google.gson.GsonBuilder;
 import hk.activity.Activity;
 import hk.activity.coordinate.Coordinate;
 import hk.activity.weather.WeatherType;
+import hk.settings.Settings;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 public class JSONConverter {
 
     public static void main(String[] args) throws IOException {
-        JSONConverter jsonConvert = new JSONConverter(new File("./activity.txt"), "./resources/json/activity.json");
+        JSONConverter jsonConvert = new JSONConverter(new File("./activity.txt"), Settings.ACTIVITY_JSON_PATH);
         jsonConvert.convert();
     }
 
