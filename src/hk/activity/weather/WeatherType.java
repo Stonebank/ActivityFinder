@@ -9,6 +9,4 @@ public enum WeatherType {
     STORM,
     SNOW,
 
-    PLACEHOLDER,
-
 }
