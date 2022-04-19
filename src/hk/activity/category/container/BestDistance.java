@@ -15,9 +15,9 @@ public class BestDistance extends Category {
             activities[i] = Activity.activities.get(i);
 
         for (int i = 0; i < activities.length; i++) {
-            double distance_i = userLocation.calculateDistance(activities[i].getCoordinate().getLatitude(), activities[i].getCoordinate().getLongitude());
+            double distance_i = userLocation.calculateDistance(activities[i].getCoordinate().getLongitude(), activities[i].getCoordinate().getLatitude());
             for (int j = 0; j < activities.length; j++) {
-                double distance_j = userLocation.calculateDistance(activities[j].getCoordinate().getLatitude(), activities[j].getCoordinate().getLongitude());
+                double distance_j = userLocation.calculateDistance(activities[j].getCoordinate().getLongitude(), activities[j].getCoordinate().getLatitude());
 
                 if (distance_i == distance_j)
                     continue;
