@@ -10,4 +10,6 @@ public class Settings {
     public static final double DEFAULT_LONGITUDE = 55.871984303779705;
     public static final double DEFAULT_LATITUDE = 12.357251514307459;
 
+    public static final String ACTIVITY_JSON_PATH = "./resources/json/activity.json";
+
 }
