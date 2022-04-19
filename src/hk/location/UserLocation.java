@@ -11,27 +11,39 @@ import java.net.URL;
 
 public class UserLocation {
 
-    public static void main(String[] args) throws IOException {
-        new UserLocation(Settings.DEFAULT_LATITUDE, Settings.DEFAULT_LONGITUDE);
+    public static void main(String[] args) {
+        UserLocation userLocation = new UserLocation(Settings.DEFAULT_LATITUDE, Settings.DEFAULT_LONGITUDE);
+        userLocation.fetch();
     }
 
     private final double latitude;
     private final double longitude;
 
-    private final URL url;
+    private URL url;
 
-    public UserLocation(double latitude, double longitude) throws IOException {
+    private JSONTokener jsonTokener;
+    private JSONObject jsonObject;
+
+    public UserLocation(double latitude, double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
+    }
 
-        this.url = new URL("https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + Settings.WEATHER_API_KEY + "&unit=" + Settings.WEATHER_UNIT_OUTPUT);
+    public void fetch() {
 
-        JSONTokener jsonTokener = new JSONTokener(url.openStream());
-        JSONObject jsonObject = new JSONObject(jsonTokener);
+        try {
+            url = new URL("https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + Settings.WEATHER_API_KEY + "&units=" + Settings.WEATHER_UNIT_OUTPUT);
+            jsonTokener = new JSONTokener(url.openStream());
+            jsonObject = new JSONObject(jsonTokener);
+        } catch (IOException e) {
+            System.err.println("ERROR! Could not fetch data from OpenWeatherAPI");
+            e.printStackTrace();
+        }
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
-        System.out.println(gson.toJson(jsonObject));
+        if (Settings.DEBUG) {
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            System.out.println(gson.toJson(jsonObject));
+        }
 
     }
 
