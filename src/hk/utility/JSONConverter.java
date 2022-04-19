@@ -12,17 +12,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-public class JsonConvert {
+public class JSONConverter {
 
     public static void main(String[] args) throws IOException {
-        JsonConvert jsonConvert = new JsonConvert(new File("./activity.txt"), "./resources/json/activity.json");
+        JSONConverter jsonConvert = new JSONConverter(new File("./activity.txt"), "./resources/json/activity.json");
         jsonConvert.convert();
     }
 
     private final File textFile;
     private final String destination;
 
-    public JsonConvert(File file, String destination) throws FileNotFoundException {
+    public JSONConverter(File file, String destination) throws FileNotFoundException {
         this.textFile = file;
         this.destination = destination;
         if (!textFile.exists())
