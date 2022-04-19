@@ -26,9 +26,9 @@ public class UserLocation {
 
     private JSONObject jsonObject;
 
-    public UserLocation(double latitude, double longitude) {
-        this.latitude = latitude;
+    public UserLocation(double longitude, double latitude) {
         this.longitude = longitude;
+        this.latitude = latitude;
     }
 
     public void fetch() {
