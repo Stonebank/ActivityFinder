@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 public abstract class JSONLoader {
 
     public static void main(String[] args) {
-        new JSONLoader() {
+        JSONLoader jsonLoader = new JSONLoader() {
             @Override
             public String json_file() {
                 return "./resources/json/activity.json";
@@ -16,17 +16,26 @@ public abstract class JSONLoader {
 
             @Override
             public void load(JsonObject reader, Gson gson) {
+
                 String name = reader.get("name").getAsString();
-                System.out.println(name);
+
+                double latitude = reader.get("coordinate").getAsJsonObject().get("latitude").getAsDouble();
+                double longitude = reader.get("coordinate").getAsJsonObject().get("longitude").getAsDouble();
+
+                // parse weather types
+
+                System.out.println(name + " " + latitude + " " + longitude);
+
             }
         };
+        jsonLoader.load();
     }
 
     public abstract String json_file();
 
     public abstract void load(JsonObject reader, Gson gson);
 
-    public JSONLoader load() {
+    public void load() {
         try (FileReader reader = new FileReader(Paths.get(json_file()).toFile())) {
 
             JsonArray array = (JsonArray) JsonParser.parseReader(reader);
@@ -41,7 +50,6 @@ public abstract class JSONLoader {
             System.err.println("Fault parsing json file: " + json_file());
             e.printStackTrace();
         }
-        return this;
     }
 
 }
