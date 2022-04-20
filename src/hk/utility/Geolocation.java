@@ -68,7 +68,7 @@ public class Geolocation {
     public double[] getCoordinate() {
         try {
             CityResponse response = databaseReader.city(InetAddress.getByName(ip));
-            return new double[] { response.getLocation().getLongitude(), response.getLocation().getLatitude() };
+            return new double[] { response.getLocation().getLatitude(), response.getLocation().getLongitude() };
         } catch (IOException | GeoIp2Exception e) {
             System.err.println("ERROR! Something went wrong getting response from Geoip2");
             e.printStackTrace();
