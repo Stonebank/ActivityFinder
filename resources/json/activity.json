@@ -50,5 +50,18 @@
       "NONE"
     ],
     "points": 0
+  },
+  {
+    "name": "Fredriksborgslot(Hillerød)",
+    "city": "Hillerød",
+    "coordinate": {
+      "latitude": 55.93497665298331,
+      "longitude": 12.301186467891375
+    },
+    "weatherTypes": [
+      "SUNNY",
+      "NONE"
+    ],
+    "points": 0
   }
 ]
