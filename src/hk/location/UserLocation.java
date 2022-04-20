@@ -64,6 +64,8 @@ public class UserLocation {
             case "shower rain", "rain", "mist", "drizzle" -> weatherType = WeatherType.RAIN;
             case "thunderstorm", "tornado" -> weatherType = WeatherType.STORM;
             case "snow" -> weatherType = WeatherType.SNOW;
+            case "WIND", "WINDY" -> weatherType = WeatherType.WIND;
+            case "none" -> weatherType = WeatherType.NONE;
             default -> System.err.println("ERROR! WeatherType not detected");
         }
 
