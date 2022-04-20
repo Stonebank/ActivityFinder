@@ -6,14 +6,20 @@ import hk.activity.category.container.BestWeather;
 import hk.location.UserLocation;
 import hk.settings.Settings;
 import hk.utility.Geolocation;
+import hk.utility.JSONConverter;
 import hk.utility.loader.ActivityLoader;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 public class Launch {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+
+        JSONConverter jsonConverter = new JSONConverter(new File("./activity.txt"), Settings.ACTIVITY_JSON_PATH);
+        jsonConverter.convert();
 
         Stopwatch stopwatch = Stopwatch.createStarted();
 
