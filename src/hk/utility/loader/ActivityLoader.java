@@ -7,13 +7,7 @@ import hk.activity.coordinate.Coordinate;
 import hk.activity.weather.WeatherType;
 import hk.utility.JSONLoader;
 
-public class ActivityLoader {
-
-    private final String path;
-
-    public ActivityLoader(String path) {
-        this.path = path;
-    }
+public record ActivityLoader(String path) {
 
     public void init() {
 
