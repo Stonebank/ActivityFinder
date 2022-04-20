@@ -115,5 +115,18 @@
       "RAIN"
     ],
     "points": 0
+  },
+  {
+    "name": "Kronborgslot",
+    "city": "Helsingør",
+    "coordinate": {
+      "latitude": 56.039203122712394,
+      "longitude": 12.622153049790171
+    },
+    "weatherTypes": [
+      "SUNNY",
+      "RAIN"
+    ],
+    "points": 0
   }
 ]
