@@ -52,13 +52,13 @@ public class JSONConverter {
             String name = splitter[0];
             String city = splitter[1];
 
-            double longitude = Double.parseDouble(splitter[2]);
-            double latitude = Double.parseDouble(splitter[3]);
+            double latitude = Double.parseDouble(splitter[2]);
+            double longitude = Double.parseDouble(splitter[3]);
 
             WeatherType bestWeather = WeatherType.valueOf(splitter[4]);
             WeatherType worstWeather = WeatherType.valueOf(splitter[5]);
 
-            activities.add(new Activity(name, city, new Coordinate(longitude, latitude), bestWeather, worstWeather));
+            activities.add(new Activity(name, city, new Coordinate(latitude, longitude), bestWeather, worstWeather));
 
         }
 
