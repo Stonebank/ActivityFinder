@@ -63,5 +63,18 @@
       "NONE"
     ],
     "points": 0
+  },
+  {
+    "name": "Møntsklint",
+    "city": "Møn",
+    "coordinate": {
+      "latitude": 54.98458760495932,
+      "longitude": 12.542480065047174
+    },
+    "weatherTypes": [
+      "SUNNY",
+      "STORM"
+    ],
+    "points": 0
   }
 ]
