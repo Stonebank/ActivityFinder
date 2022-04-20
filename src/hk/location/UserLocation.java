@@ -10,6 +10,7 @@ import org.json.JSONTokener;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
+import java.util.Locale;
 
 public class UserLocation {
 
@@ -58,7 +59,7 @@ public class UserLocation {
         feels_like = (BigDecimal) jsonObject.getJSONObject("main").get("feels_like");
 
         String weather = (String) jsonObject.getJSONArray("weather").getJSONObject(0).get("description");
-        switch (weather) {
+        switch (weather.toLowerCase(Locale.ROOT)) {
             case "clear sky", "sunny", "sun" -> weatherType = WeatherType.SUNNY;
             case "overcast clouds", "few clouds", "scattered clouds", "broken clouds" -> weatherType = WeatherType.CLOUD;
             case "shower rain", "rain", "mist", "drizzle" -> weatherType = WeatherType.RAIN;
