@@ -20,12 +20,12 @@ public class Launch {
         Geolocation geolocation = new Geolocation();
         geolocation.loadDB();
 
-        System.out.println("You're expected to be in " + geolocation.getCity()+ ", " + geolocation.getCountry() + ", " + Arrays.toString(geolocation.getCoordinate()));
+        System.out.println("You're expected to be in " + geolocation.getCity() + ", " + geolocation.getCountry() + ", " + Arrays.toString(geolocation.getCoordinate()));
 
         double lat = Settings.DEBUG ? Settings.DEFAULT_LATITUDE : geolocation.getCoordinate()[0];
         double lon = Settings.DEBUG ? Settings.DEFAULT_LONGITUDE : geolocation.getCoordinate()[1];
 
-        UserLocation userLocation = new UserLocation(lon, lat);
+        UserLocation userLocation = new UserLocation(lat, lon);
         userLocation.fetch();
         userLocation.parse();
 
@@ -46,7 +46,7 @@ public class Launch {
         bestWeather.compare(userLocation);
 
         for (Activity activity : Activity.activities)
-            System.out.println(activity + ", distance: " + userLocation.calculateDistance(activity.getCoordinate().getLongitude(), activity.getCoordinate().getLatitude()) + " km");
+            System.out.println(activity + ", distance: " + userLocation.calculateDistance(activity.getCoordinate().getLatitude(), activity.getCoordinate().getLongitude()) + " km");
 
         System.out.println("Application finished in " + stopwatch.stop().elapsed(TimeUnit.MILLISECONDS) + " ms");
 
