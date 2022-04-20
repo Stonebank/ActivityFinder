@@ -26,19 +26,19 @@ public class UserLocation {
 
     private JSONObject jsonObject;
 
-    public UserLocation(double longitude, double latitude) {
-        this.longitude = longitude;
+    public UserLocation(double latitude, double longitude) {
         this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public void fetch() {
         try {
-            URL url = new URL("https://api.openweathermap.org/data/2.5/weather?lat=" + longitude + "&lon=" + latitude + "&appid=" + Settings.WEATHER_API_KEY + "&units=" + Settings.WEATHER_UNIT_OUTPUT);
+            URL url = new URL("https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + Settings.WEATHER_API_KEY + "&units=" + Settings.WEATHER_UNIT_OUTPUT);
             JSONTokener jsonTokener = new JSONTokener(url.openStream());
             jsonObject = new JSONObject(jsonTokener);
 
             if (Settings.DEBUG)
-                System.out.println("https://api.openweathermap.org/data/2.5/weather?lat=" + longitude + "&lon=" + latitude + "&appid=" + Settings.WEATHER_API_KEY + "&units=" + Settings.WEATHER_UNIT_OUTPUT);
+                System.out.println("https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + Settings.WEATHER_API_KEY + "&units=" + Settings.WEATHER_UNIT_OUTPUT);
 
         } catch (IOException e) {
             System.err.println("ERROR! Could not fetch data from OpenWeatherAPI");
@@ -70,13 +70,21 @@ public class UserLocation {
     }
 
     public double calculateDistance(double latitude, double longitude) {
-        int earthRadius = 6371;
-        double lat = Math.toRadians(this.latitude - latitude);
-        double lon = Math.toRadians(this.longitude - longitude);
-        double a = Math.sin(lat / 2) * Math.sin(lat / 2) + Math.cos(Math.toRadians(this.latitude)) * Math.cos(Math.toRadians(latitude)) * Math.sin(lon / 2) * Math.sin(lon / 2);
+        int earth_radius = 6371;
+
+        double lat1 = Math.min(this.latitude, latitude);
+        double lat2 = Math.max(this.latitude, latitude);
+
+        double lon1 = Math.min(this.longitude, longitude);
+        double lon2 = Math.max(this.longitude, longitude);
+
+        double deltaLat = Math.toRadians(lat2 - lat1);
+        double deltaLon = Math.toRadians(lon2 - lon1);
+
+        double a = Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) + Math.cos(lat1) * Math.cos(lat2) * Math.sin(deltaLon / 2) * Math.sin(deltaLon / 2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        double distance = earthRadius * c * 1000;
-        return Math.sqrt(distance) / 100;
+
+        return earth_radius * c;
     }
 
     public BigDecimal getCurrent_temperature() {
