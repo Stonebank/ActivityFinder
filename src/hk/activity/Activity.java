@@ -55,6 +55,10 @@ public class Activity {
         this.points -= amount;
     }
 
+    public int getPoints() {
+        return points;
+    }
+
     public static Activity getActivity(String name) {
         for (Activity activity : activities) {
             if (activity.getName().equalsIgnoreCase(name))
