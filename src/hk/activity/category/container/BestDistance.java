@@ -36,7 +36,7 @@ public class BestDistance extends Category {
     @Override
     public void addPoints() {
         for (int i = 0; i < activities.length; i++) {
-            int points = 1000 / (i + 1);
+            int points = (1000 * activities.length) / (i + 1);
             Activity activity = Activity.getActivity(activities[i].getName());
             if (activity == null) {
                 System.err.println("ERROR! Something went wrong at index: " + i + " whilst adding points.");
