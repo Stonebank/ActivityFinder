@@ -3,8 +3,8 @@
     "name": "Goboat",
     "city": "København",
     "coordinate": {
-      "longitude": 55.66924392080051,
-      "latitude": 12.578563056059016
+      "latitude": 55.66924392080051,
+      "longitude": 12.578563056059016
     },
     "weatherTypes": [
       "SUNNY",
@@ -16,8 +16,8 @@
     "name": "Svanecykler",
     "city": "København",
     "coordinate": {
-      "longitude": 55.68682485679956,
-      "latitude": 12.561920127248799
+      "latitude": 55.68682485679956,
+      "longitude": 12.561920127248799
     },
     "weatherTypes": [
       "SUNNY",
@@ -29,8 +29,8 @@
     "name": "Københavnzoo",
     "city": "Frederiksberg",
     "coordinate": {
-      "longitude": 55.67311570731192,
-      "latitude": 12.519043013566618
+      "latitude": 55.67311570731192,
+      "longitude": 12.519043013566618
     },
     "weatherTypes": [
       "SUNNY",
@@ -42,8 +42,8 @@
     "name": "DenBlåplanet",
     "city": "Amager",
     "coordinate": {
-      "longitude": 55.63818999707165,
-      "latitude": 12.655983665852741
+      "latitude": 55.63818999707165,
+      "longitude": 12.655983665852741
     },
     "weatherTypes": [
       "NONE",
