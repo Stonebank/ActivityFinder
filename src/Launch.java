@@ -46,7 +46,7 @@ public class Launch {
         bestWeather.compare(userLocation);
 
         for (Activity activity : Activity.activities)
-            System.out.println(activity + ", distance: " + userLocation.calculateDistance(activity.getCoordinate().getLatitude(), activity.getCoordinate().getLongitude()) + " km");
+            System.out.println(activity + ", distance: " + Math.round(userLocation.calculateDistance(activity.getCoordinate().getLatitude(), activity.getCoordinate().getLongitude())) + " km");
 
         System.out.println("Application finished in " + stopwatch.stop().elapsed(TimeUnit.MILLISECONDS) + " ms");
 
