@@ -76,5 +76,44 @@
       "STORM"
     ],
     "points": 0
+  },
+  {
+    "name": "Thynationalpark",
+    "city": "Thy",
+    "coordinate": {
+      "latitude": 56.95855150409616,
+      "longitude": 8.368504394590445
+    },
+    "weatherTypes": [
+      "SUNNY",
+      "RAIN"
+    ],
+    "points": 0
+  },
+  {
+    "name": "Legoland",
+    "city": "Bilund",
+    "coordinate": {
+      "latitude": 55.73508091525627,
+      "longitude": 9.124506784342076
+    },
+    "weatherTypes": [
+      "SUNNY",
+      "RAIN"
+    ],
+    "points": 0
+  },
+  {
+    "name": "Bonbonland",
+    "city": "Næstved",
+    "coordinate": {
+      "latitude": 55.260896305927005,
+      "longitude": 11.863348303742372
+    },
+    "weatherTypes": [
+      "SUNNY",
+      "RAIN"
+    ],
+    "points": 0
   }
 ]
