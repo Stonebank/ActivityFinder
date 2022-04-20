@@ -11,8 +11,8 @@ import hk.utility.loader.ActivityLoader;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.concurrent.TimeUnit;
 
@@ -45,13 +45,20 @@ public class Launch {
         ActivityLoader activityLoader = new ActivityLoader(Settings.ACTIVITY_JSON_PATH);
         activityLoader.init();
 
-        Category bestDistance = new BestDistance();
-        bestDistance.compare(userLocation);
-        bestDistance.addPoints();
-        System.out.println();
+        ArrayList<Category> categories = new ArrayList<>();
+        categories.add(new BestDistance());
+        categories.add(new BestWeather());
 
-        Category bestWeather = new BestWeather();
-        bestWeather.compare(userLocation);
+        for (Category category : categories) {
+            category.compare(userLocation);
+            category.addPoints();
+
+            if (category.bestCandidate() != null)
+                System.out.println("Best candidate for category '" + category.getClass().getSimpleName() + "' " + category.bestCandidate().getName());
+
+        }
+
+        System.out.println();
 
         Activity.activities.sort(Comparator.comparing(Activity::getPoints).reversed());
 
