@@ -20,7 +20,7 @@ public class Geolocation {
         System.out.println("Grabbing IP Address...");
 
         try {
-            URL url = new URL("http://checkip.amazonaws.com/");
+            URL url = new URL("https://ip-fast.com/api/ip/");
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(url.openStream()));
             ip = bufferedReader.readLine();
         } catch (IOException e) {
