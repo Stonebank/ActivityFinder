@@ -12,7 +12,6 @@ import hk.utility.loader.ActivityLoader;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.concurrent.TimeUnit;
 
@@ -28,7 +27,7 @@ public class Launch {
         Geolocation geolocation = new Geolocation();
         geolocation.loadDB();
 
-        System.out.println("You're expected to be in " + geolocation.getCity() + ", " + geolocation.getCountry() + ", " + Arrays.toString(geolocation.getCoordinate()));
+        System.out.println(geolocation);
 
         double lat = Settings.DEBUG ? Settings.DEFAULT_LATITUDE : geolocation.getCoordinate()[0];
         double lon = Settings.DEBUG ? Settings.DEFAULT_LONGITUDE : geolocation.getCoordinate()[1];
