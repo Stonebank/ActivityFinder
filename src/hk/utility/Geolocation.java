@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.URL;
+import java.util.Arrays;
 
 public class Geolocation {
 
@@ -54,6 +55,17 @@ public class Geolocation {
         }
     }
 
+    public String getZipCode() {
+        try {
+            CityResponse response = databaseReader.city(InetAddress.getByName(ip));
+            return response.getPostal().getCode();
+        } catch (IOException | GeoIp2Exception e) {
+            System.err.println("ERROR! Something went wrong getting response from Geoip2");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public String getCity() {
         try {
             CityResponse response = databaseReader.city(InetAddress.getByName(ip));
@@ -74,6 +86,23 @@ public class Geolocation {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public String getRadius() {
+        try {
+            CityResponse response = databaseReader.city(InetAddress.getByName(ip));
+            return "accuracy radius=" + response.getLocation().getAccuracyRadius() + " km";
+        } catch (IOException | GeoIp2Exception e) {
+            System.err.println("ERROR! Something went wrong getting response from Geoip2");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Expected to be in: [city=" + getCity() + ", country=" + getCountry() + ", postal code: " + getZipCode() + ", coords=" + Arrays.toString(getCoordinate()) + "]\n" +
+                getRadius();
     }
 
 }
