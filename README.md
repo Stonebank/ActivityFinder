@@ -3,4 +3,4 @@
 Find various activity based on given coordinates
 
 # Requirements
-Machine containing at least JDK 14 installed
+Operating system with at least JDK 14 installed
