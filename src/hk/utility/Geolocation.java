@@ -15,7 +15,7 @@ import java.util.Arrays;
 public class Geolocation {
 
     private String ip;
-    private DatabaseReader databaseReader;
+    private CityResponse response;
 
     public Geolocation() {
         System.out.println("Grabbing IP Address...");
@@ -36,8 +36,9 @@ public class Geolocation {
     public void loadDB() {
         System.out.println("Loading database: " + Settings.GEO_DATABASE);
         try {
-            databaseReader = new DatabaseReader.Builder(Settings.GEO_DATABASE).build();
-        } catch (IOException e) {
+            DatabaseReader databaseReader = new DatabaseReader.Builder(Settings.GEO_DATABASE).build();
+            response = databaseReader.city(InetAddress.getByName(ip));
+        } catch (IOException | GeoIp2Exception e) {
             System.err.println("ERROR! Could not load " + Settings.GEO_DATABASE);
             e.printStackTrace();
         }
@@ -45,58 +46,23 @@ public class Geolocation {
     }
 
     public String getCountry() {
-        try {
-            CityResponse response = databaseReader.city(InetAddress.getByName(ip));
-            return response.getCountry().getName();
-        } catch (IOException | GeoIp2Exception e) {
-            System.err.println("ERROR! Something went wrong getting response from Geoip2");
-            e.printStackTrace();
-            return null;
-        }
+        return response.getCountry().getName();
     }
 
     public String getZipCode() {
-        try {
-            CityResponse response = databaseReader.city(InetAddress.getByName(ip));
-            return response.getPostal().getCode();
-        } catch (IOException | GeoIp2Exception e) {
-            System.err.println("ERROR! Something went wrong getting response from Geoip2");
-            e.printStackTrace();
-            return null;
-        }
+        return response.getPostal().getCode();
     }
 
     public String getCity() {
-        try {
-            CityResponse response = databaseReader.city(InetAddress.getByName(ip));
-            return response.getCity().getName();
-        } catch (IOException | GeoIp2Exception e) {
-            System.err.println("ERROR! Something went wrong getting response from Geoip2");
-            e.printStackTrace();
-            return null;
-        }
+        return response.getCity().getName();
     }
 
     public double[] getCoordinate() {
-        try {
-            CityResponse response = databaseReader.city(InetAddress.getByName(ip));
-            return new double[] { response.getLocation().getLatitude(), response.getLocation().getLongitude() };
-        } catch (IOException | GeoIp2Exception e) {
-            System.err.println("ERROR! Something went wrong getting response from Geoip2");
-            e.printStackTrace();
-            return null;
-        }
+        return new double[] { response.getLocation().getLatitude(), response.getLocation().getLongitude() };
     }
 
     public String getRadius() {
-        try {
-            CityResponse response = databaseReader.city(InetAddress.getByName(ip));
-            return "accuracy radius=" + response.getLocation().getAccuracyRadius() + " km";
-        } catch (IOException | GeoIp2Exception e) {
-            System.err.println("ERROR! Something went wrong getting response from Geoip2");
-            e.printStackTrace();
-            return null;
-        }
+        return "accuracy radius=" + response.getLocation().getAccuracyRadius() + " km";
     }
 
     @Override
